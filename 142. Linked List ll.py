@@ -1,0 +1,16 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution(object):
+    def detectCycle(self, head):
+        hashmap = {}
+        while head:
+            if head in hashmap:
+                return head
+            else:
+                hashmap[head] = ''
+                head = head.next
+        return None
