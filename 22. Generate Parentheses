@@ -1,0 +1,17 @@
+class Solution(object):
+    def generateParenthesis(self, n):
+        l = []
+        def recurse(s, start, end):
+            if end == n:
+                l.append(s)
+            elif start == n:
+                recurse(s + ( (n - end) * ')'), start, n)
+            elif start == 0 or start == end:
+                s += '('
+                recurse(s, start + 1, end)
+            elif start > end:
+                cpy = s[:] + '('
+                recurse(s + ')', start, end + 1)
+                recurse(cpy, start + 1, end)
+        recurse('', 0, 0)
+        return l
